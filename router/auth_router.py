@@ -8,7 +8,6 @@ from utils.s3_utils import upload_to_s3
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 @router.post("/signup", response_model=schema.ShopOwnerResponse, status_code=status.HTTP_201_CREATED)
-@router.post("/signup", response_model=schema.ShopOwnerResponse)
 async def signup(
     owner_name: str = Form(...),
     shop_name: str = Form(...),

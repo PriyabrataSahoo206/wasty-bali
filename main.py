@@ -1,11 +1,12 @@
 from fastapi import FastAPI
-from router import auth_router, form_router
+from router import auth_router, form_router, volunteer_router
 
 app = FastAPI(title="Small FastAPI App")
 
 # Include your routers
 app.include_router(auth_router.router)
 app.include_router(form_router.router)
+app.include_router(volunteer_router.router)
 
 @app.get("/")
 def root():

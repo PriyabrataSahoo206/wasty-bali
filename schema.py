@@ -46,3 +46,13 @@ class FormResponse(FormBase):
 
     class Config:
         orm_mode = True
+
+class VolunteerSchema(BaseModel):
+    volunteer_code: str
+    name: str
+    password: str
+    status: str = "active"
+
+class VolunteerLogin(BaseModel):
+    name: str
+    password: str
