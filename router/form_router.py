@@ -18,9 +18,9 @@ def read_forms(db: Session = Depends(get_db)):
     return forms
 
 
-@router.get("/{form_id}", response_model=schema.FormResponse)
-def read_form(form_id: int, db: Session = Depends(get_db)):
-    form = form_crud.get_form_by_id(db, form_id)
+@router.get("/{shope_id}", response_model=schema.FormResponse)
+def read_form(shope_id: int, db: Session = Depends(get_db)):
+    form = form_crud.get_form_by_id(db, shope_id)
     if not form:
         raise HTTPException(status_code=404, detail="Form not found")
     return form

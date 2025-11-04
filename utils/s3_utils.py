@@ -24,7 +24,7 @@ def upload_to_s3(file, folder="shop_owners"):
         file.file,
         S3_BUCKET_NAME,
         file_key,
-        ExtraArgs={"ACL": "public-read", "ContentType": file.content_type}
+        ExtraArgs={"ContentType": file.content_type}
     )
     s3_url = f"https://{S3_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/{file_key}"
     return s3_url

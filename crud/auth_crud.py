@@ -9,13 +9,13 @@ def create_shop_owner(db: Session, owner: schema.ShopOwnerCreate):
     if existing_owner:
         return None  # handle duplicate in route
 
-    hashed_pwd = hash_password(owner.password)
+    #hashed_pwd = hash_password(owner.password)
     db_owner = models.ShopOwner(
         owner_name=owner.owner_name,
         shop_name=owner.shop_name,
         shop_id=owner.shop_id,
         phone_number=owner.phone_number,
-        password=hashed_pwd,
+        password=owner.password,
         photo_url=owner.photo_url
     )
     db.add(db_owner)
@@ -28,6 +28,6 @@ def authenticate_shop_owner(db: Session, shop_id: str, password: str):
     owner = db.query(models.ShopOwner).filter(models.ShopOwner.shop_id == shop_id).first()
     if not owner:
         return None
-    if not verify_password(password, owner.password):
+    if password != owner.password:
         return None
     return owner

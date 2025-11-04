@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status, Form, UploadFile
+from fastapi import APIRouter, Depends, File, HTTPException, status, Form, UploadFile
 from sqlalchemy.orm import Session
 import schema
 import crud.auth_crud as auth_crud
@@ -14,7 +14,7 @@ async def signup(
     shop_id: str = Form(...),
     phone_number: str = Form(...),
     password: str = Form(...),
-    photo: UploadFile = None,
+    photo: UploadFile = File(None),
     db: Session = Depends(get_db)
 ):
     photo_url = None
