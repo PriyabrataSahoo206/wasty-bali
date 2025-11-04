@@ -5,10 +5,10 @@ from schema import VolunteerLogin
 from sqlalchemy.orm import Session
 
 
-router = APIRouter(prefix="/auth", tags=["Authentication"])
+router = APIRouter(prefix="/volunteer", tags=["Volunteer"])
 
 
-@router.post("/volunteer/login")
+@router.post("/login")
 def check_volunteer(credentials: VolunteerLogin, db: Session = Depends(get_db)):
     volunteer = db.query(Volunteer).filter(Volunteer.name == credentials.name).first()
 
