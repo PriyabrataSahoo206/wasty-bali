@@ -3,9 +3,18 @@ from router import auth_router, form_router, volunteer_router, scan_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Small FastAPI App")
+origins = [
+    "http://localhost",
+    "http://localhost:8000",
+    "http://localhost:3000",
+    "https://admin-wasty.netlify.app/", 
+    "https://admin-wasty.netlify.app",
+    "*"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # or ["*"] to allow all
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
